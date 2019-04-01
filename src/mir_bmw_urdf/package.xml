@@ -1,0 +1,12 @@
+<package format="2">
+  <name>mir_bmw_urdf</name>
+  <version>0.0.1</version>
+  <description>
+  Provides a URDF for a mir_bmw
+  </description>
+  <maintainer email="MIR_LAB@Kettering.edu">MIR_LAB</maintainer>
+  <license>APACHE 2.0</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>urdf</depend>
+</package>

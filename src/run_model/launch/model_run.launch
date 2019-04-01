@@ -1,0 +1,33 @@
+<launch>
+  <!-- arduino serial-->
+  <node pkg="rosserial_python" type="serial_node.py" name="serial_node">
+    <param name="port" type="string" value="/dev/ttyACM0" />
+    <param name="baud" type="double" value="57600" /> 
+  </node>
+
+  <!-- Joy node -->
+  <node respawn="true" pkg="joy" type="joy_node" name="joy_node">
+    <param name="dev" type="string" value="/dev/input/js0" />
+    <param name="deadzone" value="0.12" />
+  </node>
+
+  <!--Joy Control-->
+  <node pkg="joy_control" type="joy2vehicle.py" name="joy2vehicle">
+  </node>
+
+  <!-- USB camera node -->
+  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/video0" />
+    <param name="image_width" value="320" />
+    <param name="image_height" value="240" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+  </node>
+  <!-- Run Model -->
+  <node pkg="run_model" name="camera_model_run" type="camera_model_run.py">
+    <param name="model_directory" value="/home/mir-lab/camera_only"/>
+    <param name="model_id" value="camera_model"/>
+
+  </node>
+</launch>

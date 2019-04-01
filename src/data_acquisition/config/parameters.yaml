@@ -1,0 +1,11 @@
+#arduino port and baud selection 
+port: "/dev/ttyACM0"
+baud: 57600
+#joystick port selection 
+dev: "/dev/input/js0"
+#USB camera port selection
+video_device : "/dev/video0"
+#camera and lidar saved images directory
+Cam_lidar_images_directory : "/home/mir-lab/Desktop/"
+#stacked images saved images directory
+stacked_images_directory : "/home/mir-lab/Desktop/"

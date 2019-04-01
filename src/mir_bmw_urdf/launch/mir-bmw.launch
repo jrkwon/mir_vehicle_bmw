@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="model" default="$(find mir_bmw_urdf)/urdf/mir_bmw.urdf"/>
+  <param name="robot_description" textfile="$(arg model)"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" default="true"/>
+    <arg name="verbose" value="true"/>
+   
+  </include>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" >
+  </node>
+  <node pkg="car_demo" type="joystick_translator" name="joystick_translator"/>
+  <node pkg="joy" type="joy_node" name="joy_node0">
+    <param name="dev" value="/dev/input/js0"/>
+  </node>
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -x 3 -y -12 -z 0.5 -model mir_bmw"/>
+  <node name="rviz" pkg="rviz" type="rviz" required="true" />
+
+</launch>
