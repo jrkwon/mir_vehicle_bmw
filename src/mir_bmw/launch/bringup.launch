@@ -1,0 +1,18 @@
+<launch>
+  <!-- arduino serial-->
+  <node pkg="rosserial_python" type="serial_node.py" name="serial_node">
+    <rosparam command="load" file="$(find mir_bmw)/config/parameters.yaml" />
+  </node>
+
+  <!-- Joy node -->
+  <node respawn="true" pkg="joy" type="joy_node" name="joy_node">
+    <rosparam command="load" file="$(find mir_bmw)/config/parameters.yaml" />
+    <param name="deadzone" value="0.12" />
+  </node>
+
+  <!--Joy Control-->
+  <node pkg="joy_control" type="joy2vehicle.py" name="joy2vehicle" output="screen">
+  </node>
+  
+
+</launch>

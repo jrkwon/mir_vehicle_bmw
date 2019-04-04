@@ -1,8 +1,5 @@
-#arduino port and baud selection 
-port: "/dev/ttyACM0"
-baud: 57600
-#joystick port selection 
-dev: "/dev/input/js0"
+#lidar_port 
+port: "/dev/ttyACM1"
 #USB camera port selection
 video_device : "/dev/video0"
 #camera and lidar saved images directory

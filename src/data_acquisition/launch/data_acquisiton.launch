@@ -1,21 +1,9 @@
 <launch>
-  <!-- arduino serial-->
-
-  <node pkg="rosserial_python" type="serial_node.py" name="serial_node">
+  <!-- LIDAR node -->
+  <node pkg="xv_11_laser_driver" name="neato_laser_publisher" type="neato_laser_publisher">
     <rosparam command="load" file="$(find data_acquisition)/config/parameters.yaml" />
   </node>
 
-  <!-- Joy node -->
-  <node respawn="true" pkg="joy" type="joy_node" name="joy_node">
-    <rosparam command="load" file="$(find data_acquisition)/config/parameters.yaml" />
-    <param name="deadzone" value="0.12" />
-  </node>
-
-  <!--Joy Control-->
-  <node pkg="joy_control" type="joy2vehicle.py" name="joy2vehicle" output="screen">
-  </node>
-  
-  <!-- USB camera node -->
   <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
     <rosparam command="load" file="$(find data_acquisition)/config/parameters.yaml" />
     <param name="image_width" value="320" />
@@ -23,11 +11,6 @@
     <param name="pixel_format" value="yuyv" />
     <param name="camera_frame_id" value="usb_cam" />
     <param name="io_method" value="mmap"/>
-  </node>
-  
-  <!-- LIDAR node -->
-  <node pkg="xv_11_laser_driver" name="neato_laser_publisher" type="neato_laser_publisher">
-    <param name="port" value="/dev/ttyACM1"/>
   </node>
 
   <!--Camera and lidar images acquistion-->
